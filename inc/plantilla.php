@@ -1,9 +1,4 @@
 <?php
-function e(?string $text): string
-{
-	return htmlspecialchars((string)$text, ENT_QUOTES, 'UTF-8');
-}
-
 function renderHeader(){ ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +16,7 @@ function renderHeader(){ ?>
 			<?php if (isset($_SESSION['user_email'])): ?>
 				<li><a href="expenses.php">Gastos</a></li>
 				<li><a href="balance.php">Balance</a></li>
-				<li><a href="logout.php">Salir</a></ li>
+				<li><a href="logout.php">Salir</a></li>
 			<?php else: ?>
 				<li><a href="login.php">Entrar</a></li>
 				<li><a href="register.php">Registrarse</a></li>

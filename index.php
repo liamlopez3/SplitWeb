@@ -1,8 +1,8 @@
 <?php
-require_once 'inc/init.php';
-require_once 'inc/template.php';
+require_once __DIR__ . '/inc/codigo_inicializacion.php';
+require_once __DIR__ . '/inc/plantilla.php';
 
-define('PAGE_TITLE', 'Inicio · SplitWeb');
+define('PAGE_TITLE', 'Inicio');
 
 renderHeader();
 ?>
@@ -13,4 +13,4 @@ renderHeader();
 
 <?php
 renderFooter();
-?>
+require_once __DIR__ . '/inc/codigo_finalizacion.php';
