@@ -26,6 +26,7 @@ function renderHeader(){ ?>
 
 </header>
 <main>
+<?php include __DIR__ . '/alertas.php'; ?>
 <?php }
 
 function renderFooter() { ?>
