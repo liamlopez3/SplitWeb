@@ -1,37 +1,42 @@
 <?php
-function renderHeader(){ ?>
+function renderHeader($currentPage = '') { ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= e(constant('PAGE_TITLE')) ?> · SplitWeb</title>
-	<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?= e(constant('PAGE_TITLE')) ?> · SplitWeb</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
-	<h1><?= e(constant('PAGE_TITLE')) ?></h1>
-	<nav>
-		<ul>
-			<?php if (isset($_SESSION['user_email'])): ?>
-				<li><a href="expenses.php">Gastos</a></li>
-				<li><a href="balance.php">Balance</a></li>
-				<li><a href="logout.php">Salir</a></li>
-			<?php else: ?>
-				<li><a href="login.php">Entrar</a></li>
-				<li><a href="register.php">Registrarse</a></li>
-			<?php endif; ?>
-		</ul>
-	</nav>
-
+<header class="container">
+  <div class="page-header">
+    <h1>SplitWeb <small><?= e(constant('PAGE_TITLE')) ?></small></h1>
+  </div>
 </header>
-<main>
+<nav class="container">
+  <ul class="nav nav-pills">
+    <?php if (isset($_SESSION['user_email'])): ?>
+      <li class="<?= $currentPage === 'expenses' ? 'active' : '' ?>"><a href="expenses.php">Gastos</a></li>
+      <li class="<?= $currentPage === 'balance' ? 'active' : '' ?>"><a href="balance.php">Balance</a></li>
+      <li><a href="logout.php">Salir</a></li>
+    <?php else: ?>
+      <li class="<?= $currentPage === 'login' ? 'active' : '' ?>"><a href="login.php">Entrar</a></li>
+      <li class="<?= $currentPage === 'register' ? 'active' : '' ?>"><a href="register.php">Registrarse</a></li>
+    <?php endif; ?>
+  </ul>
+</nav>
+<main class="container">
 <?php include __DIR__ . '/alertas.php'; ?>
 <?php }
 
 function renderFooter() { ?>
 </main>
-<footer><p>SplitWeb · Tecnologías Web · UVa</p></footer>
+<footer class="container text-muted">
+  <hr>
+  <p>SplitWeb · Tecnologías Web · UVa</p>
+</footer>
 <script src="js/app.js"></script>
 </body>
 </html>
