@@ -5,6 +5,7 @@ $messages = [
 	'registro_invalido'	=> ['danger', 'Los datos del registro no son válidos.'],
 	'registro_duplicado'	=> ['danger', 'Ya existe una cuenta con ese email.'],
 	'login_error'		=> ['danger', 'Email o contraseña incorrectos.'],
+	'error_interno'		=> ['danger', 'Error interno. Inténtalo de nuevo más tarde.'],
 	'logout_ok'		=> ['info', 'Has cerrado sesión.'],
 	'gasto_creado'		=>['success', 'Gasto registrado.'],
 	'gasto_anulado'		=>['success', 'Gasto anulado.'],
