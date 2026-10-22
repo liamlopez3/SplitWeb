@@ -30,3 +30,14 @@ function findUserByEmail(PDO $pdo, string $email): ?array
 	$user = $stmt->fetch();
 	return $user === false ? null : $user;
 }
+
+function getAllUsers(PDO $pdo):array
+{
+	try{
+		return $pdo->query('SELECT email, nickname FROM Users ORDER BY nickname')->fetchAll(PDO::FETCH_ASSOC);
+	
+	} catch (PDOException $e) {
+		error_log('getAllUsers: ' . $e->getMessage());
+		return [];
+	}
+}
