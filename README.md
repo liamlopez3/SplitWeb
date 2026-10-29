@@ -60,7 +60,7 @@ which always ends with a 303 redirect (Post/Redirect/Get pattern).
 - Server-side validation of every form
 - Output escaping with `htmlspecialchars()` against XSS
 - Session cookie with `HttpOnly` and `SameSite=Lax`; session ID regenerated on login
-- `inc/` folder blocked from direct web access (`.htaccess`)
+- inc/ and assets/sql/ folders blocked from direct web access (.htaccess)
 - Database credentials kept out of the repository (`.gitignore`)
 - Application database user limited to the privileges it needs
 - *(planned)* Session checks on every private page
