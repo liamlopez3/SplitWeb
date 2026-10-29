@@ -20,7 +20,8 @@ function renderHeader($currentPage = '') { ?>
     <?php if (isset($_SESSION['user_email'])): ?>
       <li class="<?= $currentPage === 'expenses' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=expenses">Gastos</a></li>
       <li class="<?= $currentPage === 'balance' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=balance">Balance</a></li>
-      <li><a href="#">Salir</a></li>    <?php else: ?>
+      <li><a href="#">Salir</a></li>    
+      <?php else: ?>
       <li class="<?= $currentPage === 'login' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=login">Entrar</a></li>
       <li class="<?= $currentPage === 'register' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=register">Registrarse</a></li>
     <?php endif; ?>
