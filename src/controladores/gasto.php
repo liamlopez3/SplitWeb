@@ -1,7 +1,9 @@
 <?php
-require_once __DIR__ . '/inc/codigo_inicializacion.php';
-require_once __DIR__ . '/inc/modelo-gasto.php';
-require_once __DIR__ . '/inc/modelo-usuario.php';
+
+
+require_once __DIR__ . '/../../inc/codigo_inicializacion.php';
+require_once RAIZ_FISICA . 'src/modelos/gasto.php';
+require_once RAIZ_FISICA . 'src/modelos/usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('newExpense',$_POST)){
     $payer = mb_strtolower(trim(postString('fPayer')));
@@ -14,14 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('newExpense',$_POS
         && (float) $amount > 0;
 
     if (!$valid){
-        header('Location: expenses.php?resultado=gasto_invalido',true,303);
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=gasto_invalido',true,303);
         exit();
     }
 
     if (createExpense($pdo, $payer, $concept, $amount)) {
-        header('Location: expenses.php?resultado=gasto_creado',true,303);
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=gasto_creado',true,303);
     } else {
-        header('Location: expenses.php?resultado=gasto_error',true,303);
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=gasto_error',true,303);
     }
     exit();
 }
@@ -30,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('cancelExpense', $
     $id = intval($_POST['fId'] ?? 0);
 
     if ($id > 0 && deleteExpense($pdo, $id)){
-        header('Location: expenses.php?resultado=gasto_anulado', true,303);
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=gasto_anulado', true,303);
     } else {
-        header ('Location: expenses.php?resultado=gasto_anular_error',true,303);
+        header ('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=gasto_anular_error',true,303);
     }
     exit();
 }
 
-header('Location: expenses.php',true,303);
+header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses',true,303);
 exit;

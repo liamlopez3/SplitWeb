@@ -6,10 +6,9 @@ $usuarios = getAllUsers($pdo);
 <div class="well">
     <h3>Nuevo gasto</h3>
 
-    <form action="controlador-gasto.php" method="post">
+    <form action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post">
         <input type="hidden" name="newExpense" value="1">
         
-        <!-- PROVISIONAL: cuando se den sesiones, el pagador saldrá del usuario identificado -->
         <div class="form-group">
             <label for="fPayer">Pagador</label>
             <select id="fPayer" name="fPayer" class="form-control" required>

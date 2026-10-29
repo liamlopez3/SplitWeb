@@ -1,13 +1,5 @@
-<?php
-require_once __DIR__ . '/inc/codigo_inicializacion.php';
-require_once __DIR__ . '/inc/plantilla.php';
-
-define('PAGE_TITLE', 'Registro');
-renderHeader('register');
-?>
-
 <div class="well">
-  <form method="post" action="controlador-usuario.php">
+  <form method="post" action="<?= RAIZ_URL ?>src/controladores/usuario.php">
     <input type="hidden" name="registerUser" value="1">
 
     <div class="form-group">
@@ -30,11 +22,7 @@ renderHeader('register');
       <label for="fPassword2">Repite la contraseña</label>
       <input type="password" class="form-control" id="fPassword2" name="fPassword2" minlength="8" maxlength="72" required autocomplete="new-password">
     </div>
-
     <button type="submit" class="btn btn-primary">Registrarme</button>
   </form>
+  <p>¿Ya tienes cuenta? <a href="<?= RAIZ_URL ?>index.php?seccion=login">Inicia sesión</a></p>
 </div>
-
-<?php
-renderFooter();
-require_once __DIR__ . '/inc/codigo_finalizacion.php';

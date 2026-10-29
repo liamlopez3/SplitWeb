@@ -1,13 +1,5 @@
-<?php
-require_once __DIR__ . '/inc/codigo_inicializacion.php';
-require_once __DIR__ . '/inc/plantilla.php';
-
-define('PAGE_TITLE', 'Iniciar Sesión');
-renderHeader('login');
-?>
-
 <div class="well">
-  <form method="post" action="controlador-usuario.php">
+  <form method="post" action="<?= RAIZ_URL ?>src/controladores/usuario.php">
     <input type="hidden" name="loginUser" value="1">
 
     <div class="form-group">
@@ -25,9 +17,5 @@ renderHeader('login');
     <button type="submit" class="btn btn-primary">Entrar</button>
   </form>
 
-  <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
+  <p>¿No tienes cuenta? <a href="<?= RAIZ_URL ?>index.php?seccion=register">Regístrate aquí</a></p>
 </div>
-
-<?php
-renderFooter();
-require_once __DIR__ . '/inc/codigo_finalizacion.php';
