@@ -19,11 +19,15 @@ if ($posicion !== false){
 
 define ('RAIZ_URL', rtrim($baseUrl, '/') . '/');
 
-session_set_cookie_params([
-	'httponly' => true,
-	'samesite' => 'Lax',
-]);
-session_start();
+// Arranque de la sesión (solo si no se ha iniciado ya en esta petición)
+// La configuración de la cookie tiene que ir antes de session_start()
+if (session_status() === PHP_SESSION_NONE){
+	session_set_cookie_params([
+		'httponly' => true,
+		'samesite' => 'Lax',
+	]);
+	session_start();
+}
 
 const OK = 0;
 const ERROR_ALTA_USUARIO = 1;
