@@ -1,6 +1,5 @@
 <?php
 
-
 require_once __DIR__ . '/../../inc/codigo_inicializacion.php';
 require_once RAIZ_FISICA . 'src/modelos/usuario.php';
 
@@ -11,15 +10,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('registerUser', $_
     $password  = postString('fPassword');
     $password2 = postString('fPassword2');
 
-    $valid = filter_var($email, FILTER_VALIDATE_EMAIL) !== false
-        && mb_strlen($email) <= 255
-        && $fullName !== '' && mb_strlen($fullName) <= 255
-        && $nickname !== '' && mb_strlen($nickname) <= 255
-        && strlen($password) >= 8 && strlen($password) <= 72
-        && $password === $password2;
+    $errors = [];
+    $formData = [
+        'email' => $email,
+        'fullName' => $fullName,
+        'nickname' => $nickname,
+    ];
 
-    if (!$valid) {
-        header('Location: ' . RAIZ_URL . 'index.php?seccion=register&resultado=registro_invalido', true, 303);
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false || mb_strlen($email) > 255){
+        $errors['email'] = 'Introduce un email válido.';
+    }
+    
+    if ($fullName === '' || mb_strlen($fullName) > 255){
+        $errors['fullName'] = 'El nombre completo es obligatorio (máximo 255 caracteres).';
+    }
+
+    if ($nickname === '' || mb_strlen($nickname) > 255){
+        $errors['nickname'] = 'El alias es obligatorio (máximo 255 caracteres).';
+    }
+
+    if (strlen($password) < 8 || strlen($password) > 72){
+        $errors['password'] = 'La contraseña debe tener entre 8 y 72 caracteres.';
+    }
+
+    if ($password !== $password2){
+        $errors['password2'] = 'Las contraseñas no coinciden.';
+    }
+
+    if (count($errors) > 0){
+        $_SESSION['register_errors'] = $errors;
+        $_SESSION['register_data'] = $formData;
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=register',true,303);
         exit();
     }
 
