@@ -73,6 +73,7 @@ which always ends with a 303 redirect (Post/Redirect/Get pattern).
 - [x] Expenses: create, list and cancel
 - [x] Front controller and MVC folder structure
 - [x] Per-field server-side validation with session flash data
+- [x] Client-side validation with jQuery Validation
 - [ ] Logout and session checks on private pages
 - [ ] Payer taken from the session; only the payer can cancel an expense
 - [ ] Balance and settle-up
