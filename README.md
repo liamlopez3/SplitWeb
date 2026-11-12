@@ -23,7 +23,7 @@ Developed for the *Web Technologies* course (University of Valladolid).
 
 - **Backend:** PHP, PDO
 - **Database:** MySQL
-- **Frontend:** HTML, CSS, JavaScript, BootStrap 3
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap 3
 - **Server:** Apache (LAMP stack on Ubuntu Server)
 
 ## Data model
