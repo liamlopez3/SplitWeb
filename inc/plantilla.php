@@ -37,6 +37,10 @@ function renderFooter() { ?>
   <hr>
   <p>SplitWeb · Tecnologías Web · UVa</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/localization/messages_es.js"></script>
 <script src="<?= RAIZ_URL ?>assets/js/app.js"></script>
 </body>
 </html>

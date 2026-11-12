@@ -10,7 +10,7 @@ unset($_SESSION['expense_errors'], $_SESSION['expense_data']);
 <div class="well">
     <h3>Nuevo gasto</h3>
 
-    <form action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post">
+    <form id="formExpense" action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post">
         <input type="hidden" name="newExpense" value="1">
         
         <div class="form-group <?= isset($errors['payer']) ? 'has-error' : '' ?> ">

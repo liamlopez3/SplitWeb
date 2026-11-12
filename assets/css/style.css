@@ -48,3 +48,18 @@ footer {
   background-color: #f1f1f1;
   padding: 10px;
 }
+
+span.error {
+  display: block;
+  margin-top: 5px;
+  color: #a94442;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+  border-color: #a94442 !important;
+  background-color: #f2dede !important;
+}
