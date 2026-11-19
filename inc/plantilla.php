@@ -20,8 +20,16 @@ function renderHeader($currentPage = '') { ?>
     <?php if (isset($_SESSION['user_email'])): ?>
       <li class="<?= $currentPage === 'expenses' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=expenses">Gastos</a></li>
       <li class="<?= $currentPage === 'balance' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=balance">Balance</a></li>
-      <li><a href="#">Salir</a></li>    
-      <?php else: ?>
+      <li>
+        <form action="<?= RAIZ_URL ?>src/controladores/usuario.php" method="post">
+          <input type="hidden" name="logoutUser" value="1">
+          <button type="submit" class="btn-logout">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Salir (<?= e($_SESSION['user_nickname'] ?? '') ?>)
+          </button>
+        </form>
+      </li>
+    <?php else: ?>
       <li class="<?= $currentPage === 'login' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=login">Entrar</a></li>
       <li class="<?= $currentPage === 'register' ? 'active' : '' ?>"><a href="<?= RAIZ_URL ?>index.php?seccion=register">Registrarse</a></li>
     <?php endif; ?>

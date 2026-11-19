@@ -2,10 +2,13 @@
 
 $catalogoAlertas = [
     // Usuarios
-    'registro_ok'        => ['mensaje' => 'Registro completado. Ya puedes iniciar sesión.', 'clase' => 'alert-success'],
+    'registro_ok'        => ['mensaje' => 'Registro completado. Ya puedes iniciar sesión.',  'clase' => 'alert-success'],
     'registro_duplicado' => ['mensaje' => 'Ya existe una cuenta con ese email.',             'clase' => 'alert-danger'],
     'login_error'        => ['mensaje' => 'Email o contraseña incorrectos.',                 'clase' => 'alert-danger'],
     'logout_ok'          => ['mensaje' => 'Has cerrado sesión.',                             'clase' => 'alert-info'],
+    'login_ok'           => ['mensaje' => 'Sesión iniciada correctamente.',                  'clase' => 'alert-success'],
+    'sesion_requerida'   => ['mensaje' => 'Debes iniciar sesión para acceder a esa página.', 'clase' => 'alert-warning'],
+
 
     // Gastos
     'gasto_creado'       => ['mensaje' => 'Gasto registrado correctamente.',                 'clase' => 'alert-success'],

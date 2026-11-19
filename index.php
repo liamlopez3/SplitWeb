@@ -5,10 +5,16 @@ require_once RAIZ_FISICA . 'inc/plantilla.php';
 require_once RAIZ_FISICA . 'src/modelos/usuario.php';
 require_once RAIZ_FISICA . 'src/modelos/gasto.php';
 
-$seccion = $_GET['seccion'] ?? 'expenses';
+$isLoggedIn = isset($_SESSION['user_email']);
+
+$seccion = $_GET['seccion'] ?? ($isLoggedIn ? 'expenses' : 'login');
 
 switch ($seccion){
     case 'expenses':
+        if (!$isLoggedIn) {
+            header('Location: ' . RAIZ_URL . 'index.php?seccion=login&resultado=sesion_requerida', true, 303);
+            exit();
+        }
         define('PAGE_TITLE','Gastos');
         renderHeader('expenses');
         include RAIZ_FISICA . 'src/vistas/gasto/formulario.php';
@@ -17,6 +23,10 @@ switch ($seccion){
         break;
     
     case 'login':
+        if ($isLoggedIn) {
+            header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses', true, 303);
+            exit();
+        }
         define('PAGE_TITLE','Iniciar sesión');
         renderHeader('login');
         include RAIZ_FISICA . 'src/vistas/usuario/login.php';
@@ -24,6 +34,10 @@ switch ($seccion){
         break;
 
     case 'register':
+        if ($isLoggedIn) {
+            header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses', true, 303);
+            exit();
+        }
         define('PAGE_TITLE','Registro');
         renderHeader('register');
         include RAIZ_FISICA . 'src/vistas/usuario/registro.php';

@@ -57,6 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('registerUser', $_
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('loginUser', $_POST)) {
+    if (isset($_SESSION['user_email'])) {
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses', true, 303);
+        exit();
+    }
+
     $email    = mb_strtolower(trim(postString('fEmail')));
     $password = postString('fPassword');
 
@@ -71,7 +76,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('loginUser', $_POS
     $_SESSION['user_email']    = $user['email'];
     $_SESSION['user_nickname'] = $user['nickname'];
 
-    header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses', true, 303);
+    header('Location: ' . RAIZ_URL . 'index.php?seccion=expenses&resultado=login_ok', true, 303);
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists('logoutUser', $_POST)) {
+    if (!isset($_SESSION['user_email'])) {
+        header('Location: ' . RAIZ_URL . 'index.php?seccion=login&resultado=sesion_requerida', true, 303);
+        exit();
+    }
+
+    $_SESSION = [];
+
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', [
+        'expires'  => time() - 3600,
+        'path'     => $params['path'],
+        'domain'   => $params['domain'],
+        'secure'   => $params['secure'],
+        'httponly' => $params['httponly'],
+        'samesite' => $params['samesite'],
+    ]);
+
+    session_destroy();
+
+    header('Location: ' . RAIZ_URL . 'index.php?seccion=login&resultado=logout_ok', true, 303);
     exit();
 }
 

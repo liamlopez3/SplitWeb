@@ -63,3 +63,17 @@ textarea.error {
   border-color: #a94442 !important;
   background-color: #f2dede !important;
 }
+
+.btn-logout {
+  float: left;
+  display: block;
+  padding: 14px 16px;
+  border: none;
+  background: none;
+  color: #f2f2f2;
+}
+
+.btn-logout:hover {
+  background-color: #ddd;
+  color: black;
+}
