@@ -36,7 +36,6 @@ $(document).ready(function() {
     if ($("#formExpense").length > 0){
         $("#formExpense").validate({
             rules: {
-                fPayer: { required: true },
                 fConcept: { required: true, maxlength: 100 },
                 fAmount: { required: true, number: true, min: 0.01 }
             }

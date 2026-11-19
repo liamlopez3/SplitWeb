@@ -35,12 +35,17 @@ function getActiveExpenses(PDO $pdo): array
     }
 }
 
-function deleteExpense(PDO $pdo, int $id): bool
+function deleteExpense(PDO $pdo, int $id, string $payerEmail): bool
 {
-    $sql = 'DELETE FROM Expenses WHERE id = :id AND is_settled = 0';
+    $sql = 'DELETE FROM Expenses 
+            WHERE id = :id 
+            AND payer_email = :payer AND is_settled = 0';
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':id' => $id]);
+        $stmt->execute([
+            ':id' => $id,
+            ':payer' => $payerEmail,
+        ]);
         return $stmt->rowCount() === 1;
     } catch (PDOException $e){
         error_log('deleteExpense: ' . $e->getMessage());

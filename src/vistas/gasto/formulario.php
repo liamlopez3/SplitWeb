@@ -1,7 +1,5 @@
 <?php
 
-$usuarios = getAllUsers($pdo);
-
 $errors = $_SESSION['expense_errors'] ?? [];
 $formData = $_SESSION['expense_data'] ?? [];
 unset($_SESSION['expense_errors'], $_SESSION['expense_data']);
@@ -13,17 +11,10 @@ unset($_SESSION['expense_errors'], $_SESSION['expense_data']);
     <form id="formExpense" action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post">
         <input type="hidden" name="newExpense" value="1">
         
-        <div class="form-group <?= isset($errors['payer']) ? 'has-error' : '' ?> ">
-            <label for="fPayer" class="control-label">Pagador</label>
-            <select id="fPayer" name="fPayer" class="form-control" required>
-                <?php foreach ($usuarios as $usuario): ?>
-                    <option value="<?= e($usuario['email']) ?>" <?= ($formData['payer'] ?? '') === $usuario['email'] ? 'selected' : '' ?>><?= e($usuario['nickname']) ?></option>
-                <?php endforeach; ?>
-            </select>
-            <?php if (isset($errors['payer'])): ?>
-                <span class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> <?= e($errors['payer']) ?></span>
-            <?php endif; ?>
-        </div>
+        <p class="form-control-static">
+            <span class="glyphicon glyphicon-user"></span>
+            Pagador: <strong><?= e($_SESSION['user_nickname'] ?? '') ?></strong>
+        </p>
 
         <div class="form-group <?= isset($errors['concept']) ? 'has-error' : '' ?>">
             <label for="fConcept" class="control-label">Concepto</label>
@@ -31,8 +22,8 @@ unset($_SESSION['expense_errors'], $_SESSION['expense_data']);
                 maxlength="100" required value="<?= e($formData['concept'] ?? '') ?>">
             <?php if(isset($errors['concept'])): ?>
                 <span class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> <?= e($errors['concept']) ?></span>
-                <?php endif; ?>
-            </div>
+            <?php endif; ?>
+        </div>
 
         <div class="form-group <?= isset($errors['amount']) ? 'has-error' : '' ?>">
             <label for="fAmount" class="control-label">Importe (€)</label>

@@ -24,12 +24,16 @@ $gastos = getActiveExpenses($pdo);
             <td><?= e($gasto['concept']) ?></td>
             <td class="text-right"><?= e(number_format((float) $gasto['amount'], 2, ',', '.')) ?> €</td>
             <td>
-              <form action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post" style="display: inline-block;"
-                    onsubmit="return confirm('¿Seguro que quieres anular este gasto?');">
-                <input type="hidden" name="cancelExpense" value="1">
-                <input type="hidden" name="fId" value="<?= (int) $gasto['id'] ?>">
-                <button type="submit" class="btn btn-sm btn-danger">Anular</button>
-              </form>
+              <?php if ($gasto['payer_email'] === ($_SESSION['user_email'] ?? '')): ?>
+                <form action="<?= RAIZ_URL ?>src/controladores/gasto.php" method="post" style="display: inline-block;"
+                      onsubmit="return confirm('¿Seguro que quieres anular este gasto?');">
+                  <input type="hidden" name="cancelExpense" value="1">
+                  <input type="hidden" name="fId" value="<?= (int) $gasto['id'] ?>">
+                  <button type="submit" class="btn btn-sm btn-danger">Anular</button>
+                </form>
+              <?php else: ?>
+                <span class="text-muted">—</span>
+              <?php endif; ?>
             </td>
           </tr>
         <?php endforeach; ?>
