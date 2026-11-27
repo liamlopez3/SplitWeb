@@ -18,6 +18,12 @@ switch ($resource) {
     case 'auth':
         require_once RAIZ_FISICA . 'src/controladores/usuario_rest.php';
         break;
+    case 'gastos':
+        if(!isset($_SESSION['user_email'])) {
+            respondJson(401, ['estado' => 'error', 'mensaje' => 'No autorizado. Debes iniciar sesión para acceder a este recurso.']);
+        }
+        require_once RAIZ_FISICA . 'src/controladores/gasto_rest.php';
+        break;
     default:
         respondJson(404, ['estado' => 'error', 'mensaje' => 'Recurso no encontrado.']);
 }
